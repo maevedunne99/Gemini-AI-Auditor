@@ -63,4 +63,4 @@ Ensure your script corresponds to your spreadsheet columns.
 The AI auditor will review the row and post its feedback in the designated comment column.
 
 ⚠️ Disclaimer
-Model Compatibility: Ensure you are calling a multimodal model (e.g., **gemini-2.5-flash** or newer) to support image payloads.
+Model Compatibility: Ensure you are calling a multimodal model (e.g., **gemini-3.5-flash** or newer) to support image payloads.
