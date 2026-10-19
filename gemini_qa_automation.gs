@@ -32,12 +32,12 @@ function executeAiSanityCheckForSelectedRow() {
 function processRowEvaluation(sheet, rowIndex) {
   // Extract dataset fields from specified columns
   var rowData = {
-    userQuery: sheet.getRange(rowIndex, 2).getValue(),      // Column B (User Query)
-    imageUrl: sheet.getRange(rowIndex, 3).getValue(),       // Column C (Image Link)
-    vertical: sheet.getRange(rowIndex, 4).getValue(),       // Column D (Vertical)
-    subCategory: sheet.getRange(rowIndex, 7).getValue(),    // Column G (Sub-Category)
-    targetEntities: sheet.getRange(rowIndex, 8).getValue(), // Column H (Expected Entities)
-    primarySources: sheet.getRange(rowIndex, 9).getValue()  // Column I (Primary Sources)
+    userQuery: sheet.getRange(rowIndex, 1).getValue(),      // Column A
+    imageUrl: sheet.getRange(rowIndex, 2).getValue(),       // Column B
+    vertical: sheet.getRange(rowIndex, 3).getValue(),       // Column C
+    subCategory: sheet.getRange(rowIndex, 4).getValue(),    // Column D
+    targetEntities: sheet.getRange(rowIndex, 5).getValue(), // Column E
+    primarySources: sheet.getRange(rowIndex, 6).getValue()  // Column F
   };
 
   // Build the comprehensive evaluation prompt based on QA Guidelines
@@ -46,12 +46,12 @@ function processRowEvaluation(sheet, rowIndex) {
   // Call the Gemini API model securely, passing both the prompt and the image URL
   var aiEvaluationResult = fetchGuidelineValidationFromGemini(evaluationPrompt, rowData.imageUrl);
 
-  // Write the resulting evaluation comment into Column S (QA Comment)
-  sheet.getRange(rowIndex, 19).setValue(aiEvaluationResult);
+  // Write the resulting evaluation comment into Column G (QA Comment)
+  sheet.getRange(rowIndex, 7).setValue(aiEvaluationResult);
 
-  // Automatically set Column U (QA Review Status) to "Good" if verification passes
+  // Automatically set Column H (QA Result) to "Good" if verification passes
   if (aiEvaluationResult.indexOf("[PASS]") !== -1) {
-    sheet.getRange(rowIndex, 21).setValue("Good");
+    sheet.getRange(rowIndex, 8).setValue("Good");
   }
 }
 
