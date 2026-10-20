@@ -93,7 +93,6 @@ function fetchGuidelineValidationFromGemini(promptText, imageUrl) {
     return "[ERROR]: GEMINI_API_KEY not set in Script Properties.";
   }
 
-  // NOTE: Ensure you replace 'gemini-2.5-flash' with the current valid model name if different.
   var apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + scriptApiKey;
   
   // Initialize parts array with the text prompt
